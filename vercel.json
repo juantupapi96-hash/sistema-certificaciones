@@ -1,9 +1,0 @@
-{
-  "functions": {
-    "api/index.py": {
-      "maxDuration": 10
-    }
-  },
-  "installCommand": "pip install --break-system-packages -r requirements.txt",
-  "version": 2
-}
