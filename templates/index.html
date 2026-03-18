@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIRECCIÓN NACIONAL DE EDUCACIÓN - Sistema de Certificaciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0B4F6C 0%, #145C9E 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #0B4F6C;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 18px;
+        }
+	.header-content {
+    	display: flex;
+    	align-items: center;
+    	justify-content: center;
+    	gap: 15px;
+	}
+
+	
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: white;
+            color: #0B4F6C;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #0B4F6C;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .card h3 {
+            color: #145C9E;
+            margin: 20px 0 10px;
+        }
+
+        /* Formularios */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #0B4F6C;
+            box-shadow: 0 0 10px rgba(11,79,108,0.2);
+        }
+
+        .form-group input:read-only {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0B4F6C 0%, #145C9E 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+
+        /* Alertas */
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Ejemplo */
+        .ejemplo {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0 20px;
+            border-left: 4px solid #0B4F6C;
+        }
+
+        .ejemplo code {
+            background: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #0B4F6C;
+        }
+
+        /* Tabla */
+        .table-container {
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #0B4F6C;
+            color: white;
+            padding: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .estado {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        .estado-pendiente {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .estado-proceso {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .estado-enviado {
+            background: #28a745;
+            color: white;
+        }
+
+        /* Estados de solicitud (visualización usuario) */
+        .estados-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .estado-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .estado-bola {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 18px;
+        }
+
+        .estado-bola.activo {
+            background: #28a745;
+        }
+
+        .estado-bola.proceso {
+            background: #ffc107;
+        }
+
+        .estado-linea {
+            position: absolute;
+            top: 20px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: -1;
+        }
+
+        /* Modal login */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            margin: 100px auto;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close {
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        /* Stats cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #0B4F6C 0%, #145C9E 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .stat-card .numero {
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+    <div class="header">
+    <div class="header-content">
+        
+        <h1>DIRECCIÓN NACIONAL DE EDUCACIÓN</h1>
+    </div>
+    <p>Sistema de Gestión de Certificaciones - DNE</p>
+</div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="cambiarTab('usuario')">👤 SOLICITUD DE CERTIFICACIÓN</button>
+            <button class="tab" onclick="cambiarTab('consulta')">🔍 CONSULTAR ESTADO</button>
+            <button class="tab" onclick="mostrarLoginAdmin()">⚙️ ADMINISTRADOR</button>
+        </div>
+
+        <!-- Tab Usuario -->
+        <div id="tabUsuario" class="card">
+            <h2>📝 GENERAR SOLICITUD DE CERTIFICACIÓN</h2>
+            
+            <div class="ejemplo">
+                <strong>Formato correcto para nombres:</strong><br>
+                <code>CRNL. CANO CABRERA NORMAN ROLANDO</code><br>
+                <small>GRADO. APELLIDO PATERNO APELLIDO MATERNO NOMBRES</small><br><br>
+                <strong>Ejemplos:</strong><br>
+                - SGOS. TREJO QUINÓNEZ TOMAS EDUARDO<br>
+                - MAYR. ZURITA BAQUERO DIEGO EDISON<br>
+                - CBOS. CRESPO BARRIGA STEFANY NICOLE
+            </div>
+
+            <form id="formSolicitud">
+                <div class="form-group">
+                    <label>Cédula (10 dígitos) *</label>
+                    <input type="text" id="cedula" maxlength="10" pattern="\d{10}" placeholder="Ej: 0921199989" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Grado + Apellidos + Nombres *</label>
+                    <input type="text" id="nombreCompleto" placeholder="Ej: CRNL. CANO CABRERA NORMAN ROLANDO" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Correo Electrónico Principal *</label>
+                    <input type="email" id="correo1" placeholder="correo.principal@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Correo Electrónico Secundario</label>
+                    <input type="email" id="correo2" placeholder="correo.secundario@gmail.com">
+                </div>
+
+                <button type="submit" class="btn btn-primary">📨 GENERAR SOLICITUD</button>
+            </form>
+
+            <div id="resultadoSolicitud" style="margin-top: 20px; display: none;"></div>
+        </div>
+
+        <!-- Tab Consulta -->
+        <div id="tabConsulta" class="card" style="display: none;">
+            <h2>🔍 CONSULTAR ESTADO DE SOLICITUD</h2>
+
+            <div class="form-group">
+                <label>Ingrese su número de cédula:</label>
+                <input type="text" id="cedulaConsulta" maxlength="10" placeholder="Ej: 0921199989">
+                <button class="btn btn-primary" onclick="consultarSolicitud()" style="margin-top: 10px;">Consultar</button>
+            </div>
+
+            <div id="resultadoConsulta" style="display: none;">
+                <h3>📋 DETALLE DE SOLICITUDES</h3>
+                <div id="cardsSolicitudes"></div>
+            </div>
+        </div>
+
+        <!-- Tab Admin (NUEVO COMPLETO) -->
+        <div id="tabAdmin" class="card" style="display: none;">
+            <h2>⚙️ PANEL ADMINISTRATIVO - DIRECCIÓN NACIONAL DE EDUCACIÓN</h2>
+
+            <!-- Stats -->
+            <div class="stats-container" id="statsAdmin">
+                <div class="stat-card">
+                    <h3>TOTAL SOLICITUDES</h3>
+                    <div class="numero" id="totalSolicitudes">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>PENDIENTES</h3>
+                    <div class="numero" id="totalPendientes">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>EN PROCESO</h3>
+                    <div class="numero" id="totalProceso">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>ENVIADOS</h3>
+                    <div class="numero" id="totalEnviados">0</div>
+                </div>
+            </div>
+
+                   <!-- Filtros y acciones -->
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                <input type="text" id="buscarAdmin" placeholder="Buscar por cédula o nombre..." 
+                       style="flex: 2; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                
+                <select id="filtroEstado" style="flex: 1; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                    <option value="todos">📊 Todos los estados</option>
+                    <option value="PENDIENTE">⏳ Pendiente</option>
+                    <option value="EN PROCESO">🔄 En Proceso</option>
+                    <option value="ENVIADO">✅ Enviado</option>
+                </select>
+                
+                <button class="btn btn-primary" onclick="aplicarFiltros()">🔍 Buscar</button>
+                <button class="btn btn-success" onclick="cargarSolicitudesAdmin()">🔄 Actualizar</button>
+                <button class="btn btn-info" onclick="descargarExcel()">📥 Descargar Excel</button>
+            </div>
+
+            <!-- Tabla de solicitudes con checkboxes (MODIFICADO) -->
+            <div style="margin-bottom: 10px; display: flex; gap: 10px; align-items: center;">
+                <label style="display: flex; align-items: center; gap: 5px;">
+                    <input type="checkbox" id="seleccionarTodos" onchange="seleccionarTodos()"> Seleccionar todos
+                </label>
+                <span id="contadorSeleccionados" style="color: #666; font-size: 14px;">0 seleccionados</span>
+                
+                <!-- Acciones con seleccionados -->
+                <select id="estadoSeleccionados" style="padding: 5px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option value="EN PROCESO">🔄 Marcar EN PROCESO</option>
+                    <option value="ENVIADO">✅ Marcar ENVIADO</option>
+                    <option value="PENDIENTE">⏳ Marcar PENDIENTE</option>
+                </select>
+                <button class="btn btn-primary" onclick="aplicarASeleccionados()" style="padding: 5px 15px;">Aplicar</button>
+            </div>
+
+            <div class="table-container">
+                <table id="tablaSolicitudes">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">✓</th>
+                            <th>N° SOLICITUD</th>
+                            <th>FECHA</th>
+                            <th>NOMBRE COMPLETO</th>
+                            <th>CÉDULA</th>
+                            <th>CORREO 1</th>
+                            <th>CORREO 2</th>
+                            <th>ESTADO</th>
+                            <th>ACCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTabla">
+                        <tr>
+                            <td colspan="9" style="text-align: center; padding: 50px;">
+                                Cargando solicitudes...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Login Admin -->
+    <div id="modalLogin" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔐 Acceso Administrador - DNE</h3>
+                <span class="close" onclick="cerrarModal()">&times;</span>
+            </div>
+            
+            <div class="form-group">
+                <label>Usuario:</label>
+                <input type="text" id="usuarioAdmin" value="DRCANI2026" readonly style="background: #f0f0f0;">
+            </div>
+            
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" id="contrasenaAdmin" placeholder="Ingrese contraseña">
+            </div>
+            
+            <button class="btn btn-primary" onclick="loginAdmin()" style="width: 100%;">Ingresar al Panel</button>
+            <div id="errorLogin" style="color: red; margin-top: 10px; text-align: center; display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // =============================================
+        // FUNCIONES GENERALES
+        // =============================================
+
+        // Cambiar entre pestañas
+        function cambiarTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('tabUsuario').style.display = 'none';
+            document.getElementById('tabConsulta').style.display = 'none';
+            document.getElementById('tabAdmin').style.display = 'none';
+            
+            if (tab === 'usuario') {
+                document.getElementById('tabUsuario').style.display = 'block';
+            } else if (tab === 'consulta') {
+                document.getElementById('tabConsulta').style.display = 'block';
+            }
+        }
+
+        // =============================================
+        // FUNCIONES DE LOGIN
+        // =============================================
+
+        function mostrarLoginAdmin() {
+            document.getElementById('modalLogin').style.display = 'block';
+            document.getElementById('contrasenaAdmin').value = '';
+            document.getElementById('errorLogin').style.display = 'none';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalLogin').style.display = 'none';
+        }
+
+        // Login de administrador
+        async function loginAdmin() {
+            const usuario = document.getElementById('usuarioAdmin').value;
+            const contrasena = document.getElementById('contrasenaAdmin').value;
+            
+            if (!contrasena) {
+                document.getElementById('errorLogin').style.display = 'block';
+                document.getElementById('errorLogin').textContent = 'Ingrese la contraseña';
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({usuario, contrasena})
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    cerrarModal();
+                    
+                    // Cambiar a la pestaña de admin
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab')[2].classList.add('active'); // Admin tab
+                    
+                    document.getElementById('tabUsuario').style.display = 'none';
+                    document.getElementById('tabConsulta').style.display = 'none';
+                    document.getElementById('tabAdmin').style.display = 'block';
+                    
+                    // ¡LO MÁS IMPORTANTE! Cargar las solicitudes inmediatamente
+                    await cargarSolicitudesAdmin();
+                    
+                } else {
+                    document.getElementById('errorLogin').style.display = 'block';
+                    document.getElementById('errorLogin').textContent = '❌ Contraseña incorrecta';
+                }
+            } catch (error) {
+                document.getElementById('errorLogin').style.display = 'block';
+                document.getElementById('errorLogin').textContent = '❌ Error de conexión con el servidor';
+            }
+        }
+
+        // =============================================
+        // FUNCIONES DE SOLICITUD (USUARIO)
+        // =============================================
+
+        // Crear nueva solicitud
+        document.getElementById('formSolicitud').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const cedula = document.getElementById('cedula').value;
+            if (!/^\d{10}$/.test(cedula)) {
+                alert('La cédula debe tener 10 dígitos');
+                return;
+            }
+            
+            const data = {
+                cedula: cedula,
+                nombre_completo: document.getElementById('nombreCompleto').value,
+                correo1: document.getElementById('correo1').value,
+                correo2: document.getElementById('correo2').value || ''
+            };
+            
+            try {
+                const response = await fetch('/api/solicitudes', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('resultadoSolicitud').style.display = 'block';
+                    document.getElementById('resultadoSolicitud').className = 'alert alert-success';
+                    document.getElementById('resultadoSolicitud').innerHTML = `
+                        ✅ <strong>¡SOLICITUD GENERADA EXITOSAMENTE!</strong><br><br>
+                        <strong>Número de solicitud:</strong> <code>${result.codigo_solicitud}</code><br>
+                        <strong>Fecha:</strong> ${new Date().toLocaleString()}<br><br>
+                        <small>Guarde este número para consultar el estado de su solicitud.</small>
+                    `;
+                    this.reset();
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                alert('Error al conectar con el servidor');
+            }
+        });
+
+        // =============================================
+        // FUNCIONES DE CONSULTA (USUARIO)
+        // =============================================
+
+        async function consultarSolicitud() {
+            const cedula = document.getElementById('cedulaConsulta').value;
+            
+            if (!/^\d{10}$/.test(cedula)) {
+                alert('Ingrese una cédula válida de 10 dígitos');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/solicitudes/${cedula}`);
+                const result = await response.json();
+                
+                if (result.success && result.data.length > 0) {
+                    mostrarSolicitudesUsuario(result.data);
+                } else {
+                    document.getElementById('resultadoConsulta').style.display = 'block';
+                    document.getElementById('cardsSolicitudes').innerHTML = 
+                        '<div class="alert alert-info">No se encontraron solicitudes para esta cédula</div>';
+                }
+            } catch (error) {
+                alert('Error al consultar');
+            }
+        }
+
+        function mostrarSolicitudesUsuario(solicitudes) {
+            document.getElementById('resultadoConsulta').style.display = 'block';
+            
+            let html = '';
+            solicitudes.forEach(s => {
+                // Determinar clase del estado
+                let estadoClass = 'estado-pendiente';
+                let estadoTexto = s.estado;
+                
+                if (s.estado === 'EN PROCESO') {
+                    estadoClass = 'estado-proceso';
+                } else if (s.estado === 'ENVIADO') {
+                    estadoClass = 'estado-enviado';
+                }
+                
+                html += `
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 20px; margin-bottom: 20px; border: 1px solid #ddd;">
+                        <h4 style="color: #0B4F6C; margin-bottom: 15px;">📄 ${s.numero_solicitud}</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px;">
+                            <div><strong>📅 Fecha:</strong> ${s.fecha_solicitud}</div>
+                            <div><strong>🆔 Cédula:</strong> ${s.cedula}</div>
+                            <div><strong>👤 Nombre:</strong> ${s.nombre_completo}</div>
+                            <div><strong>📧 Correos:</strong> ${s.correo1} ${s.correo2 ? '/ ' + s.correo2 : ''}</div>
+                        </div>
+                        
+                        <h5>ESTADO ACTUAL:</h5>
+                        <div style="display: flex; align-items: center; gap: 10px; margin: 15px 0;">
+                            <span class="estado ${estadoClass}" style="font-size: 14px; padding: 8px 15px;">${s.estado}</span>
+                            <span style="color: #666;">Actualizado: ${s.fecha_actualizacion}</span>
+                        </div>
+                        
+                        <div class="estados-container">
+                            <div class="estado-item">
+                                <div class="estado-bola ${s.estado === 'PENDIENTE' ? 'activo' : ''}">1</div>
+                                <div>PENDIENTE</div>
+                                ${s.estado !== 'PENDIENTE' ? '<div class="estado-linea"></div>' : ''}
+                            </div>
+                            <div class="estado-item">
+                                <div class="estado-bola ${s.estado === 'EN PROCESO' ? 'proceso' : ''} ${s.estado === 'ENVIADO' ? 'activo' : ''}">2</div>
+                                <div>EN PROCESO</div>
+                                ${s.estado === 'ENVIADO' ? '<div class="estado-linea"></div>' : ''}
+                            </div>
+                            <div class="estado-item">
+                                <div class="estado-bola ${s.estado === 'ENVIADO' ? 'activo' : ''}">3</div>
+                                <div>ENVIADO</div>
+                            </div>
+                        </div>
+                        
+                        <p style="margin-top: 20px; color: #666; font-size: 12px; text-align: right;">
+                            ⏱️ Última actualización: ${s.fecha_actualizacion}
+                        </p>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('cardsSolicitudes').innerHTML = html;
+        }
+
+        // =============================================
+        // FUNCIONES DE ADMINISTRADOR (CON NUEVAS FUNCIONES MASIVAS)
+        // =============================================
+
+        // Variable global para guardar todas las solicitudes
+        let todasLasSolicitudes = [];
+
+        // Cargar solicitudes para admin
+        async function cargarSolicitudesAdmin() {
+            try {
+                const response = await fetch('/api/solicitudes');
+                const result = await response.json();
+                
+                if (result.success) {
+                    todasLasSolicitudes = result.data;
+                    actualizarStats(todasLasSolicitudes);
+                    mostrarTablaAdmin(todasLasSolicitudes);
+                } else {
+                    document.getElementById('cuerpoTabla').innerHTML = `
+                        <tr>
+                            <td colspan="9" style="text-align: center; padding: 50px; color: #999;">
+                                ❌ Error al cargar datos
+                            </td>
+                        </tr>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('cuerpoTabla').innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 50px; color: #999;">
+                            ❌ Error de conexión con el servidor
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Actualizar estadísticas
+        function actualizarStats(solicitudes) {
+            const total = solicitudes.length;
+            const pendientes = solicitudes.filter(s => s.estado === 'PENDIENTE').length;
+            const proceso = solicitudes.filter(s => s.estado === 'EN PROCESO').length;
+            const enviados = solicitudes.filter(s => s.estado === 'ENVIADO').length;
+            
+            document.getElementById('totalSolicitudes').textContent = total;
+            document.getElementById('totalPendientes').textContent = pendientes;
+            document.getElementById('totalProceso').textContent = proceso;
+            document.getElementById('totalEnviados').textContent = enviados;
+        }
+
+        // Mostrar tabla admin con checkboxes
+        function mostrarTablaAdmin(solicitudes) {
+            const tbody = document.getElementById('cuerpoTabla');
+            
+            if (!solicitudes || solicitudes.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 50px; color: #999;">
+                            📭 No hay solicitudes registradas
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            let html = '';
+            
+            solicitudes.forEach(s => {
+                let estadoClass = 'estado-pendiente';
+                if (s.estado === 'EN PROCESO') estadoClass = 'estado-proceso';
+                if (s.estado === 'ENVIADO') estadoClass = 'estado-enviado';
+                
+                let selectedPendiente = s.estado === 'PENDIENTE' ? 'selected' : '';
+                let selectedProceso = s.estado === 'EN PROCESO' ? 'selected' : '';
+                let selectedEnviado = s.estado === 'ENVIADO' ? 'selected' : '';
+                
+                html += `
+                    <tr>
+                        <td style="text-align: center;">
+                            <input type="checkbox" class="seleccionar-solicitud" data-codigo="${s.numero_solicitud}" onchange="actualizarContadorSeleccionados()">
+                        </td>
+                        <td><small>${s.numero_solicitud}</small></td>
+                        <td><small>${s.fecha_solicitud}</small></td>
+                        <td>${s.nombre_completo}</td>
+                        <td>${s.cedula}</td>
+                        <td><small>${s.correo1}</small></td>
+                        <td><small>${s.correo2 || '-'}</small></td>
+                        <td><span class="estado ${estadoClass}">${s.estado}</span></td>
+                        <td>
+                            <select onchange="actualizarEstado('${s.numero_solicitud}', this.value)" 
+                                    style="padding: 5px; border-radius: 5px; border: 1px solid #ddd;">
+                                <option value="PENDIENTE" ${selectedPendiente}>⏳ Pendiente</option>
+                                <option value="EN PROCESO" ${selectedProceso}>🔄 En Proceso</option>
+                                <option value="ENVIADO" ${selectedEnviado}>✅ Enviado</option>
+                            </select>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+            document.getElementById('seleccionarTodos').checked = false;
+            actualizarContadorSeleccionados();
+        }
+
+        // Aplicar filtros de búsqueda
+        function aplicarFiltros() {
+            const busqueda = document.getElementById('buscarAdmin').value.toLowerCase();
+            const filtroEstado = document.getElementById('filtroEstado').value;
+            
+            const filtradas = todasLasSolicitudes.filter(s => {
+                const coincideBusqueda = 
+                    s.cedula.toLowerCase().includes(busqueda) ||
+                    s.nombre_completo.toLowerCase().includes(busqueda) ||
+                    s.numero_solicitud.toLowerCase().includes(busqueda);
+                
+                const coincideEstado = filtroEstado === 'todos' || s.estado === filtroEstado;
+                
+                return coincideBusqueda && coincideEstado;
+            });
+            
+            mostrarTablaAdmin(filtradas);
+        }
+
+        // Actualizar estado de una solicitud
+        async function actualizarEstado(codigo, nuevoEstado) {
+            if (!confirm(`¿Está seguro de cambiar el estado a "${nuevoEstado}"?`)) return;
+            
+            try {
+                const response = await fetch(`/api/solicitudes/${codigo}/estado`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({estado: nuevoEstado})
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Recargar todas las solicitudes para actualizar la tabla
+                    await cargarSolicitudesAdmin();
+                    alert('✅ Estado actualizado correctamente');
+                } else {
+                    alert('❌ Error: ' + result.error);
+                }
+            } catch (error) {
+                alert('❌ Error al actualizar');
+            }
+        }
+
+        // Descargar Excel
+        function descargarExcel() {
+            window.location.href = '/api/admin/descargar-excel';
+        }
+
+        // =============================================
+        // FUNCIONES DE ACCIONES MASIVAS (NUEVAS)
+        // =============================================
+
+        // Aplicar cambio masivo por rango de números
+        async function aplicarCambioMasivo() {
+            const desde = parseInt(document.getElementById('rangoDesde').value);
+            const hasta = parseInt(document.getElementById('rangoHasta').value);
+            const estado = document.getElementById('estadoMasivo').value;
+            
+            if (!desde || !hasta) {
+                alert('❌ Por favor ingrese el rango de solicitudes');
+                return;
+            }
+            
+            if (desde > hasta) {
+                alert('❌ El número "desde" debe ser menor o igual a "hasta"');
+                return;
+            }
+            
+            if (!confirm(`¿Está seguro de cambiar las solicitudes ${desde.toString().padStart(4, '0')} hasta ${hasta.toString().padStart(4, '0')} a "${estado}"?`)) {
+                return;
+            }
+            
+            // Mostrar mensaje de carga
+            const mensaje = document.createElement('div');
+            mensaje.className = 'alert alert-info';
+            mensaje.textContent = '🔄 Procesando cambios masivos...';
+            document.querySelector('#tabAdmin').insertBefore(mensaje, document.querySelector('#tabAdmin').firstChild);
+            
+            try {
+                let actualizadas = 0;
+                let errores = 0;
+                
+                // Obtener todas las solicitudes
+                const response = await fetch('/api/solicitudes');
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error('Error al obtener solicitudes');
+                }
+                
+                // Filtrar por rango de números
+                const solicitudesARango = result.data.filter(s => {
+                    try {
+                        // Extraer el número de la solicitud (formato DNE-SOL-0001-2025)
+                        const partes = s.numero_solicitud.split('-');
+                        const numero = parseInt(partes[2]); // Índice 2 para el número
+                        return numero >= desde && numero <= hasta;
+                    } catch {
+                        return false;
+                    }
+                });
+                
+                if (solicitudesARango.length === 0) {
+                    alert('❌ No se encontraron solicitudes en ese rango');
+                    mensaje.remove();
+                    return;
+                }
+                
+                // Actualizar una por una
+                for (const solicitud of solicitudesARango) {
+                    try {
+                        const updateResponse = await fetch(`/api/solicitudes/${solicitud.numero_solicitud}/estado`, {
+                            method: 'PUT',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({estado: estado})
+                        });
+                        
+                        if (updateResponse.ok) {
+                            actualizadas++;
+                        } else {
+                            errores++;
+                        }
+                    } catch {
+                        errores++;
+                    }
+                }
+                
+                mensaje.remove();
+                
+                // Mostrar resultado
+                alert(`✅ Proceso completado\n- Actualizadas: ${actualizadas}\n- Errores: ${errores}`);
+                
+                // Recargar tabla
+                await cargarSolicitudesAdmin();
+                
+            } catch (error) {
+                mensaje.remove();
+                alert('❌ Error en el proceso masivo: ' + error.message);
+            }
+        }
+
+        // Aplicar a TODAS las solicitudes
+        async function aplicarATodas(estado) {
+            if (!confirm(`⚠️ ¿Está seguro de cambiar TODAS las solicitudes a "${estado}"?`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/solicitudes');
+                const result = await response.json();
+                
+                if (!result.success || !result.data.length) {
+                    alert('No hay solicitudes para actualizar');
+                    return;
+                }
+                
+                let actualizadas = 0;
+                
+                for (const solicitud of result.data) {
+                    try {
+                        await fetch(`/api/solicitudes/${solicitud.numero_solicitud}/estado`, {
+                            method: 'PUT',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({estado: estado})
+                        });
+                        actualizadas++;
+                    } catch (e) {
+                        console.error('Error en:', solicitud.numero_solicitud);
+                    }
+                }
+                
+                alert(`✅ ${actualizadas} solicitudes actualizadas a "${estado}"`);
+                await cargarSolicitudesAdmin();
+                
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Aplicar a las primeras 5 solicitudes
+        async function aplicarPrimeras5(estado) {
+            if (!confirm(`📨 ¿Aplicar "${estado}" a las primeras 5 solicitudes?`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/solicitudes');
+                const result = await response.json();
+                
+                if (!result.success || !result.data.length) {
+                    alert('No hay solicitudes');
+                    return;
+                }
+                
+                // Ordenar por número de solicitud
+                const ordenadas = result.data.sort((a, b) => {
+                    try {
+                        const numA = parseInt(a.numero_solicitud.split('-')[2]);
+                        const numB = parseInt(b.numero_solicitud.split('-')[2]);
+                        return numA - numB;
+                    } catch {
+                        return 0;
+                    }
+                });
+                
+                // Tomar las primeras 5
+                const primeras5 = ordenadas.slice(0, 5);
+                
+                let actualizadas = 0;
+                
+                for (const solicitud of primeras5) {
+                    try {
+                        await fetch(`/api/solicitudes/${solicitud.numero_solicitud}/estado`, {
+                            method: 'PUT',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({estado: estado})
+                        });
+                        actualizadas++;
+                    } catch (e) {
+                        console.error('Error en:', solicitud.numero_solicitud);
+                    }
+                }
+                
+                alert(`✅ ${actualizadas} solicitudes actualizadas a "${estado}"`);
+                await cargarSolicitudesAdmin();
+                
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // FUNCIONES PARA CHECKBOXES
+        function seleccionarTodos() {
+            const seleccionarTodos = document.getElementById('seleccionarTodos').checked;
+            const checkboxes = document.querySelectorAll('.seleccionar-solicitud');
+            checkboxes.forEach(cb => {
+                cb.checked = seleccionarTodos;
+            });
+            actualizarContadorSeleccionados();
+        }
+
+        function actualizarContadorSeleccionados() {
+            const seleccionados = document.querySelectorAll('.seleccionar-solicitud:checked').length;
+            document.getElementById('contadorSeleccionados').textContent = `${seleccionados} seleccionados`;
+        }
+
+        async function aplicarASeleccionados() {
+            const seleccionados = document.querySelectorAll('.seleccionar-solicitud:checked');
+            
+            if (seleccionados.length === 0) {
+                alert('❌ No hay solicitudes seleccionadas');
+                return;
+            }
+            
+            const estado = document.getElementById('estadoSeleccionados').value;
+            
+            if (!confirm(`¿Aplicar "${estado}" a ${seleccionados.length} solicitudes seleccionadas?`)) {
+                return;
+            }
+            
+            let actualizadas = 0;
+            let errores = 0;
+            
+            for (const checkbox of seleccionados) {
+                const codigo = checkbox.getAttribute('data-codigo');
+                
+                try {
+                    const response = await fetch(`/api/solicitudes/${codigo}/estado`, {
+                        method: 'PUT',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({estado: estado})
+                    });
+                    
+                    if (response.ok) {
+                        actualizadas++;
+                    } else {
+                        errores++;
+                    }
+                } catch {
+                    errores++;
+                }
+            }
+            
+            alert(`✅ Procesado: ${actualizadas} actualizadas, ${errores} errores`);
+            await cargarSolicitudesAdmin();
+        }
+
+        // Event listeners para filtros
+        document.getElementById('buscarAdmin')?.addEventListener('keyup', aplicarFiltros);
+        document.getElementById('filtroEstado')?.addEventListener('change', aplicarFiltros);
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalLogin');
+            if (event.target === modal) {
+                cerrarModal();
+            }
+        }
+    </script>
+</body>
+</html>
